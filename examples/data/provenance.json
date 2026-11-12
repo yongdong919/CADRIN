@@ -1,0 +1,49 @@
+{
+  "dataset": "GDSC1+GDSC2 fixed CaDRiN feature tables",
+  "scenario": "random_pair",
+  "training_seed": 3078,
+  "sampling": {
+    "method": "uniform_without_replacement",
+    "random_state": 3078,
+    "pairs": 2000,
+    "source_test_pairs": 34196
+  },
+  "pairs": 2000,
+  "drugs": 409,
+  "cells": 820,
+  "label_scale": "Same calibrated natural-log IC50 target as the formal seed-3078 test predictions",
+  "feature_values_and_column_order_preserved": true,
+  "expected_sample_metrics": {
+    "n": 2000,
+    "pcc": 0.942446645469414,
+    "rmse": 0.8714442874870316
+  },
+  "full_test_reference_metrics": {
+    "n": 34196,
+    "pcc": 0.9402950443764932,
+    "rmse": 0.904389551092444
+  },
+  "files": {
+    "context_path": {
+      "file": "context.csv.gz",
+      "rows": 820,
+      "columns": 2502
+    },
+    "fingerprint_path": {
+      "file": "morgan.tsv.gz",
+      "rows": 409,
+      "columns": 1027
+    },
+    "viper_path": {
+      "file": "viper.tsv.gz",
+      "rows": 820,
+      "columns": 284
+    },
+    "mtr_path": {
+      "file": "chemberta_mtr.tsv.gz",
+      "rows": 409,
+      "columns": 388
+    }
+  },
+  "model": "CaDRiN"
+}

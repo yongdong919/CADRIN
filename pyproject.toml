@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cadrin"
+version = "1.0.0"
+description = "Context-aware drug response prediction with cellular regulatory networks"
+readme = "README.md"
+requires-python = ">=3.9,<3.12"
+license = {file = "LICENSE"}
+authors = [{name = "CaDRiN authors"}]
+dependencies = [
+    "numpy==1.26.4",
+    "pandas==2.2.3",
+    "scipy==1.13.1",
+    "scikit-learn==1.5.2",
+    "torch==2.1.1",
+    "joblib==1.4.2",
+    "rdkit==2025.9.2",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7,<9"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+cadrin = ["configs/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--import-mode=importlib"

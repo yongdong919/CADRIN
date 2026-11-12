@@ -1,0 +1,15 @@
+name: cadrin
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9.20
+  - pip
+  - pip:
+      - numpy==1.26.4
+      - pandas==2.2.3
+      - scipy==1.13.1
+      - scikit-learn==1.5.2
+      - torch==2.1.1
+      - joblib==1.4.2
+      - rdkit==2025.9.2
+      - pytest==8.4.2

@@ -1,0 +1,103 @@
+{
+  "experiment": {
+    "model_name": "CaDRiN",
+    "result_prefix": "cadrin"
+  },
+  "paths": {
+    "context": "inputs/context.csv",
+    "fingerprint": "inputs/morgan.tsv",
+    "viper": "inputs/viper.tsv.gz",
+    "response": "inputs/response.tsv.gz",
+    "split_root": "inputs/splits/gdsc_seed{split_seed}"
+  },
+  "model": {
+    "hidden_dims": [
+      300,
+      100
+    ],
+    "fingerprint_code_dim": 30,
+    "context_code_dim": 30,
+    "viper_code_dim": 32,
+    "predictor_hidden_dims": [
+      128,
+      128
+    ],
+    "dropout": 0.2
+  },
+  "main_effect": {
+    "method": "visibility_aware_anova_morgan_mtr",
+    "mtr_features": "inputs/mtr.tsv",
+    "mtr_audit": "inputs/mtr_audit.json",
+    "mtr_width": 384,
+    "k": 3,
+    "gamma": 1.0,
+    "tau": 0.0,
+    "extra_trees": {
+      "n_estimators": 500,
+      "max_features": 0.7,
+      "min_samples_leaf": 5,
+      "n_jobs": -1
+    },
+    "outer_folds": 5,
+    "cv_seed": 3078,
+    "selected_by": "Training cross-fitting; scaffold-grouped for scaffold-held-out splits"
+  },
+  "response_profile": {
+    "method": "training_anova_residual_svd",
+    "rank": 8,
+    "beta": 1.0,
+    "beta_grid": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "cell_main_weight": 1.0,
+    "cell_ridge_alpha": 1000.0,
+    "drug_knn": {
+      "k": 3,
+      "gamma": 1.0,
+      "tau": 0.0
+    }
+  },
+  "random_pair_correction": {
+    "method": "both_seen_multiresolution_response_correction",
+    "teacher": {
+      "rank_grid": [
+        8,
+        16,
+        32
+      ],
+      "regularization_grid": [
+        0.0001,
+        0.001
+      ],
+      "holdout_fraction": 0.05,
+      "learning_rate": 0.03,
+      "selection_epochs": 120,
+      "patience": 15,
+      "min_delta": 0.0001
+    },
+    "fusion": {
+      "method": "validation_nonnegative_least_squares",
+      "main_effect_weight": 1.0
+    }
+  },
+  "loss": {
+    "fingerprint_reconstruction": 0.2,
+    "context_reconstruction": 0.3
+  },
+  "training": {
+    "learning_rate": 0.001,
+    "weight_decay": 0.0,
+    "epochs": 100,
+    "batch_size": 1024,
+    "evaluation_batch_size": 4096,
+    "patience": 12,
+    "lr_patience": 3,
+    "min_learning_rate": 1e-06,
+    "min_delta": 0.0001,
+    "num_workers": 4
+  }
+}

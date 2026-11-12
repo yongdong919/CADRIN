@@ -1,0 +1,9 @@
+{
+  "pairs_path": "data/pairs.tsv",
+  "labels_path": "data/labels.tsv",
+  "context_path": "data/context.csv.gz",
+  "fingerprint_path": "data/morgan.tsv.gz",
+  "viper_path": "data/viper.tsv.gz",
+  "mtr_path": "data/chemberta_mtr.tsv.gz",
+  "mtr_audit_path": "data/mtr_audit.json"
+}

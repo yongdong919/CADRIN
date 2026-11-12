@@ -1,0 +1,10 @@
+include README.md LICENSE environment.yml
+recursive-include docs *.jpg *.md
+recursive-include examples *.py *.json *.tsv *.gz *.zip
+prune test
+prune tests
+prune dist
+prune build
+prune models
+prune .pytest_cache
+global-exclude *.py[cod]
